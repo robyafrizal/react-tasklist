@@ -10,6 +10,7 @@ const TodoForm = ({ addTodo }) => {
     task: "",
     completed: false,
   });
+  const [validated, setValidated] = useState(false);
 
   const handleChange = (e) => {
     setTodo({
@@ -23,10 +24,19 @@ const TodoForm = ({ addTodo }) => {
       addTodo({ ...todo, id: uuidv4() });
       setTodo({ ...todo, task: "" }); //reset ulang task input
     }
+    const form = et.currentTarget;
+    if (form.checkValidity() === false) {
+      setValidated(true);
+    }
   };
   return (
     <div>
-      <Form onSubmit={handleSubmit} style={{ display: "inline-block" }}>
+      <Form
+        noValidate
+        validated={validated}
+        onSubmit={handleSubmit}
+        style={{ display: "inline-block" }}
+      >
         <Form.Group controlId="formBasicEmail">
           <Form.Label>
             <h1>Create Task List</h1>
@@ -37,6 +47,7 @@ const TodoForm = ({ addTodo }) => {
             onChange={handleChange}
             value={todo.task}
             style={{ width: "30rem" }}
+            required
           />
         </Form.Group>
         <Date />
