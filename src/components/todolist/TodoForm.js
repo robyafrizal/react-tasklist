@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Form, Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
+import Date from "../Date";
 
 const TodoForm = ({ addTodo }) => {
   const [todo, setTodo] = useState({
@@ -38,6 +39,7 @@ const TodoForm = ({ addTodo }) => {
             style={{ width: "30rem" }}
           />
         </Form.Group>
+        <Date />
         <Button variant="info" type="submit">
           Add Task
         </Button>
